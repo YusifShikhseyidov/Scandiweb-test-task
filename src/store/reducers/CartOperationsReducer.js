@@ -1,6 +1,6 @@
 export const ADD_TO_CART="ADD_TO_CART";
 export const TOGGLE_CART="TOGGLE_CART";
-// export const UPDATE_CART_ITEM="UPDATE_CART_ITEM";
+export const UPDATE_CART_ITEM="UPDATE_CART_ITEM";
 export const REMOVE_CART_ITEM="REMOVE_CART_ITEM";
 export const CLEAR_CART="CLEAR_CART";
 export const CLOSE_CART="CLOSE_CART";
@@ -115,8 +115,8 @@ const CartOperationsReducer = (state=initialState, action) => {
             const newCartItems = state.cartItems.map( product =>{
                 return {
                     ...product,
-                    singleprice: getPriceLabel(product.prices, state.currency,label),
-                    totalPrice: getPriceLabel(product.prices, state.currency,label) * product.quantity
+                    singleprice: getPriceLabel(product.prices, state.currency.label),
+                    totalPrice: getPriceLabel(product.prices, state.currency.label) * product.quantity
                 };
             });
 
