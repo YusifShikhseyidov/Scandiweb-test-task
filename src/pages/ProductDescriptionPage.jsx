@@ -4,7 +4,7 @@ import { request } from "graphql-request";
 import {productDetailsQuery} from "../queries";
 import {withRouter} from "react-router-dom";
 
-class ProductDetailsPage extends Component{
+class ProductPage extends Component{
     state={
         product: null
     }
@@ -20,11 +20,13 @@ class ProductDetailsPage extends Component{
 
     render() {
         return(
-            <div>
-                {this.state.product === null ? ( <div>A second please...</div>) : ( <ProductDetails product= {this.state/product} /> ) }
-            </div>
+            <>
+                <div>
+                    {this.state.product === null ? ( <div>A second please...</div>) : ( <ProductDetails product={this.state.product} /> )}
+                </div>
+            </>
         )
     }
 }
 
-export default withRouter(ProductDetailsPage);
+export default withRouter(ProductPage);

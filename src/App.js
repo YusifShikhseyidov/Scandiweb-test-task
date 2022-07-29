@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import Products from "./components/Products";
-import { closeCurrencyMenu } from "./store/actions";
+// import Home from "./components/Home";
 import { connect } from "react-redux";
+import { closeCurrencyMenu } from "./store/actions";
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -41,7 +41,7 @@ class App extends Component{
     return(
       <div ref={this.bodyRef}>
         <ApolloProvider client={client} >
-          <Products />
+          {/* <Home /> */}
         </ApolloProvider>
       </div>
     );

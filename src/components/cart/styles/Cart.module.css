@@ -1,0 +1,24 @@
+.cartlist{
+    padding: 12px 0;
+    list-style: none !important;
+}
+
+.order{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.order span{
+    font-weight: bolds;
+}
+
+.order-button{
+    width: 201px;
+    height: 42px;
+    margin: 12px 0;
+    padding: 16px 32px;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #5ece7b;    
+}

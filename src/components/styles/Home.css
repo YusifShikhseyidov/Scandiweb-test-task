@@ -1,0 +1,25 @@
+.container{
+    padding: 0 48px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.category{
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.category-list{
+    display: flex;
+    flex-direction: column;
+    list-style: disc;
+    gap: 12px;
+}
+
+.category-list li{
+    font-size: 27px;
+}
+
+.category-lsit li:hover{
+    text-decoration: underline;
+}

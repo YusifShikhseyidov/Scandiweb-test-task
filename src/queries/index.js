@@ -1,6 +1,6 @@
 import { gql } from "graphql-request";
 
-export const allQuery = gql`
+export const query = gql`
     {
         category{
             name

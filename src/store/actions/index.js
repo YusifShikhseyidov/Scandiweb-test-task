@@ -2,9 +2,9 @@ import { ADD_TO_CART, TOGGLE_CART, REMOVE_CART_ITEM, CLEAR_CART, CLOSE_CART, SET
 import { TOGGLE_CURRENCY_MENU, CLOSE_CURRENCY_MENU } from "../reducers/CurrencyReducer";
 import { GET_PRODUCTS, SET_ERROR } from "../reducers/ProductReducer";
 
-export const getProducts = (product) => ({
+export const getProducts = (products) => ({
     type: GET_PRODUCTS,
-    payload: product
+    payload: products
 });
 
 export const setError = (errorMessage) =>({

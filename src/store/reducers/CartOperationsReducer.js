@@ -101,15 +101,15 @@ const CartOperationsReducer = (state=initialState, action) => {
 
         case SET_TOTAL_AMOUNT:
             const getPriceLabel = (prices, currency) =>{
-                let pricee = 0;
+                let _price_ = 0;
                 prices.forEach( price =>{
                     if(price.currency.label === currency){
-                        pricee = price.amount;
+                        _price_ = price.amount;
                         return;
                     }
                 })
 
-                return pricee;
+                return _price_;
             }
 
             const newCartItems = state.cartItems.map( product =>{
