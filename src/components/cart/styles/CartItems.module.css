@@ -52,15 +52,16 @@
     gap: 12px;
 }
 
-.action-button{
+.action-buttons{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
-.action-button button{
+.action-buttons button{
     width: 36px;
     height: 36px;
+    padding: 10px;
     border: 1px solid #1d1f22;
 }
 

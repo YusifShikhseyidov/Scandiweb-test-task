@@ -12,12 +12,17 @@
 .category-list{
     display: flex;
     flex-direction: column;
-    list-style: disc;
+    padding-left: 27px;
+    list-style: square;
     gap: 12px;
 }
 
 .category-list li{
     font-size: 27px;
+}
+
+.category-list li a{
+    text-transform: uppercase;
 }
 
 .category-lsit li:hover{

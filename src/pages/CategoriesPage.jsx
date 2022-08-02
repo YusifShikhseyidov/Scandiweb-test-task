@@ -18,7 +18,7 @@ class CategoriesPage extends Component{
     render(){
         return(
             <div>
-                <h4>The Categories of the Products</h4>
+                <h4>The Categories of the Products: </h4>
                 <ul className="category-list">
                     {this.state.categories.map((category) => (
                         <li key={category.name}>

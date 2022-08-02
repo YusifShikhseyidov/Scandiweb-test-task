@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { addToCart, removeCartItem, setTotalAmount } from "../../store/actions";
+import { addToCart, removeCartItem, setTotalAmountt } from "../../store/actions";
 import { connect } from "react-redux";
 import styles from "./styles/MiniCart.module.css";
 
@@ -9,7 +9,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) =>({
-    setTotalAmount: ()=> dispatch(setTotalAmount()),
+    setTotalAmount: ()=> dispatch(setTotalAmountt()),
     addProductToCart: (product) => dispatch(addToCart(product)),
     removeProductFromCart: (index) => dispatch(removeCartItem(index))
 });
@@ -17,7 +17,12 @@ const mapDispatchToProps = (dispatch) =>({
 class MiniCart extends Component{
 
     addToCartHandler = () =>{
-        this.props.addProductToCart(this.props.item),
+        this.props.addProductToCart(this.props.item)
+        this.props.setTotalAmount()
+    }
+
+    removeFromCartHandler = () => {
+        this.props.removeProductFromCart(this.props.index)
         this.props.setTotalAmount()
     }
 
@@ -33,22 +38,18 @@ class MiniCart extends Component{
         return _price_;
     }
 
-    removeFromCartHandler = () => {
-        this.props.removeProductFromCart(this.props.index),
-        this.props.setTotalAmount()
-    }
 
     render(){
         return(
             <ul className={styles.list}>
                 <li>
                     <div className={styles.layout}>
-                        <div classNmae={styles["row-one"]}>
+                        <div className={styles["row-one"]}>
                             <span>
                                 <p className={styles.bold}>{this.props.item.brand}</p>
                                 <p>{this.props.item.name}</p>
                             </span>
-                            <p className={styles.bold}>
+                            <p className={styles.boldMoney}>
                                 {this.props.currency.symbol}
                                 {this.getPriceLabel(this.props.item.prices).toFixed(2)}
                             </p>
@@ -83,7 +84,7 @@ class MiniCart extends Component{
                                 <button onClick={this.removeFromCartHandler}>-</button>
                             </div>
 
-                            <img src={this.props.item.gallery[0]} className={styles["product-image"]} alt="product-image"/>
+                            <img src={this.props.item.gallery[0]} className={styles["product-image"]} alt="product"/>
 
                         </div>
                     </div>

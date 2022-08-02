@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
-import { toggleCurrencyMenu, setTotalAmount, setCurrency, toggleCart, closeCart} from "../store/actions";
+import { toggleCurrencyMenu, setTotalAmountt, setCurrency, toggleCart, closeCart} from "../store/actions";
 import MiniCart from "./cart/MiniCart";
 import request from "graphql-request";
 import {currencyQuery} from "../queries";
 import styled from "styled-components";
 import styles from "./styles/Navbar.module.css";
-import { arrowDown, arrowUp, cartIcon, iconLogo } from "./icons/Icons";
+import { logo, arrowDown, arrowUp, cart } from "./imports";
+
 
 const Ul = styled.ul`
     display: flex;
@@ -61,10 +62,10 @@ const mapStateToProps = (state) =>({
 });
 
 const mapDispatchToProps = (dispatch) =>({
-    toggleToOpen: () => dispatch(toggleCart()),
+    toggleCartHandler: () => dispatch(toggleCart()),
     toggleCurrencyMenuHandler: () => dispatch(toggleCurrencyMenu()),
     setCurrency: (currency) => dispatch(setCurrency(currency)),
-    setTotalAmount: () => dispatch(setTotalAmount()),
+    setTotalAmount: () => dispatch(setTotalAmountt()),
     closeCart: () => dispatch(closeCart())
 });
 
@@ -107,18 +108,19 @@ class Navbar extends Component{
                 {/* Navigation links part */}
                 <div className={styles.navbar}>
                     <ul className={styles.navlinks}>
-                        { this.props.categories.map((category) =>{
+                        { this.props.categories.map((category) =>(
                             <li key={category.name}>
                                 <NavLink exact activeClassName={styles.active} to={`/${category.name}`} >
                                     {category.name}
                                 </NavLink>
                             </li>
-                        })}
+                        ))}
                     </ul>
                     
                     {/* Site logo */}
                     <div>
-                        <span className={styles.logo}> {iconLogo} </span>
+                        {/* <span className={styles.logo}> {iconLogo} </span> */}
+                        <img src={logo} style={{width: 35}} alt="logo" />
                     </div>
 
                     {/* Currency menu part */}
@@ -127,22 +129,24 @@ class Navbar extends Component{
                             {!this.props.isOpen && (
                                 <div>
                                     <button onClick={ this.toggleCurrencyMenuHandler}>
-                                        <span className={styles.currency} >
+                                        <span className={styles.currencyy} >
                                             { this.props.currency.symbol }
                                         </span>
                                         {" "}
-                                        {arrowDown}
+                                        {/* {arrowDown} */}
+                                        <img src={arrowDown} alt="arrowDown" />
                                     </button>
                                 </div>
                             )}
                             {this.props.isOpen && (
                                 <>
                                     <button onClick={ this.toggleCurrencyMenuHandler}>
-                                        <span className={styles.currency} >
+                                        <span className={styles.currencyy} >
                                             { this.props.currency.symbol }
                                         </span>
                                         {" "}
-                                        {arrowUp}
+                                        {/* {arrowUp} */}
+                                        <img src={arrowUp} alt="arrowUp" />
                                     </button>
                                 </>
                             )}
@@ -161,8 +165,9 @@ class Navbar extends Component{
                         
                         {/* Cart Section */}
                         <div className={styles.cart} >
-                            <button onClick={() => this.props.toggleOpen()}>
-                                {cartIcon}
+                            <button onClick={() => this.props.toggleCartHandler()}>
+                                {/* {cart} */}
+                                <img src={cart} alt="cart" />
                             </button>
                             {this.props.cartItems.length > 0 && (
                                 <span className={styles.cartItemsNumber}>
@@ -178,15 +183,15 @@ class Navbar extends Component{
                                         <>
                                             <div>
                                                 <p className={styles.bag}>
-                                                    <span className={styles.bold}>My Bag</span>
+                                                    <span className={styles.bold}>My Bag </span>
                                                     {this.props.totalCartItems} items
                                                 </p>
                                             </div>
-                                            {this.props.cartItems.map((cart, key) => (
-                                                <MiniCart index={key} item={cart} key={key} />
+                                            {this.props.cartItems.map((product, key) => (
+                                                <MiniCart index={key} item={product} key={key} />
                                             ))}
                                             <div className={styles.total}>
-                                                <h4>Total</h4>
+                                                <p>Total</p>
                                                 <p>
                                                     {this.props.currency.symbol}
                                                     {this.props.totalPrice.toFixed(2)}
@@ -212,3 +217,5 @@ class Navbar extends Component{
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+
+

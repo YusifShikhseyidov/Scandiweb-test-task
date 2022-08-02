@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-// import Home from "./components/Home";
+import Home from "./components/Home";
 import { connect } from "react-redux";
 import { closeCurrencyMenu } from "./store/actions";
 
@@ -41,7 +41,7 @@ class App extends Component{
     return(
       <div ref={this.bodyRef}>
         <ApolloProvider client={client} >
-          {/* <Home /> */}
+          <Home />
         </ApolloProvider>
       </div>
     );

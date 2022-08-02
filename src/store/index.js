@@ -1,5 +1,5 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { CartOperationsReducer, currencyReducer, croductReducer, productReducer } from "./reducers";
+import { CartOperationsReducer, CurrencyReducer, ProductReducer } from "./reducers";
 
 import { persistStore, persistReducer } from "redux-persist";
 import storageSession from "redux-persist/lib/storage/session";
@@ -19,8 +19,8 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-    productList: productReducer,
-    currency: currencyReducer,
+    productList: ProductReducer,
+    currency: CurrencyReducer,
     cart: CartOperationsReducer
 });
 

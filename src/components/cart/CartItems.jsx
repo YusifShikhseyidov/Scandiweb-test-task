@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { setTotalAmount, addToCart, removeCartItem } from "../../store/actions";
+import { setTotalAmountt, addToCart, removeCartItem } from "../../store/actions";
 import { connect } from "react-redux";
 import CartImages from "./CartImages";
 import styles from "./styles/CartItems.module.css";
@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) =>({
-    setTotalAmount: ()=> dispatch(setTotalAmount()),
+    setTotalAmount: ()=> dispatch(setTotalAmountt()),
     addProductToCart: (product) => dispatch(addToCart(product)),
     removeProductFromCart: (index) => dispatch(removeCartItem(index))
 });
@@ -21,7 +21,12 @@ class CartItems extends Component {
     }
 
     addToCartHandler = () =>{
-        this.props.addProductToCart(this.props.item),
+        this.props.addProductToCart(this.props.item)
+        this.props.setTotalAmount()
+    }
+
+    removeFromCartHandler = () => {
+        this.props.removeProductFromCart(this.props.index)
         this.props.setTotalAmount()
     }
 
@@ -37,17 +42,13 @@ class CartItems extends Component {
         return _price_;
     }
 
-    removeFromCartHandler = () => {
-        this.props.removeProductFromCart(this.props.index),
-        this.props.setTotalAmount()
-    }
 
     render() {
         return(
             <>
-                <li>
+                <li onClick={this.setTotalAMount}>
                     <div className={styles.layout}>
-                        <div classNmae={styles["row-one"]}>
+                        <div className={styles["row-one"]}>
                             <span>
                                 <p className={styles.bold}>{this.props.item.brand}</p>
                                 <p>{this.props.item.name}</p>
@@ -92,6 +93,7 @@ class CartItems extends Component {
                         </div>
                     </div>
                 </li>
+                <hr/>
             </>
         )
     }

@@ -14,23 +14,24 @@
     margin: 16px 0;
     padding: 8px 0;
     max-width: 1440px;
-    height: 6vh;
+    height: 10vh;
 }
 
-.navLinks{
+.navlinks{
     display: flex;
     margin: 0;
     padding: 0;
-    list-style: 0;
+    list-style: none;
 }
 
-.navLinks li a{
+.navlinks li a{
     padding: 0 13px 15px;
     text-decoration: none;
-    color: #1b1d21;
+    text-transform: uppercase;
+    color: #1d1f22;
     cursor: pointer;
 }
-.navLinks li a:hover{
+.navlinks li a:hover{
     color: #57ee84;
 }
 
@@ -39,17 +40,29 @@
     color: #57ee84 !important;
 }
 
-.logo{
+/* .logo{
     padding: 5px;
     color: #fff;
     border-radius: 6px;
     background: linear-gradient(317deg, #4fcd74 17%, #57ee84 85%);
-}
+} */
 
 .secondPart{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+button{
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+.currencyy{
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .currencyMenu{
@@ -61,21 +74,16 @@
     padding: 4px 16px;
 }
 
-button{
-    cursor: pointer;
-    background-color: transparent;
-    outline: none;
-    border: none;
+.currencyMenu img{
+    position: absolute;
+    top: 40%;
+    margin-left: 2px;
 }
 
 p{
     margin: 0;
 }
 
-.currency{
-    font-size: 20px;
-    font-weight: bold;
-}
 
 .cart{
     position: relative;
@@ -83,12 +91,12 @@ p{
 
 .cartItemsNumber{
     position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 13px;
+    top: 35%;
+    left: 65%;
+    font-size: 10px;
     color: #fff;
     background-color: #000;
-    border-radius: 50%;
+    border-radius: 55%;
     padding: 0 4px 1px;
     transform: translate(11%, -100%)
 }
@@ -126,6 +134,7 @@ p{
 
 .buttonActions button:nth-child(1){
     width: 50%;
+    width: 180px;
     height: 43px;
     margin: 12px 0;
     padding: 12px;
@@ -137,6 +146,7 @@ p{
     margin: 12px 0;
     padding: 12px 16px;
     width: 50%;
+    width: 180px;
     height: 45px;
     color: #fff;
     background-color: #5dcb7a;
@@ -148,7 +158,7 @@ p{
 }
 
 .bag .bold{
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .total{

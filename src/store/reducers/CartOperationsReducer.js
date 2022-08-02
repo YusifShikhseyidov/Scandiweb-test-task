@@ -58,25 +58,25 @@ const CartOperationsReducer = (state=initialState, action) => {
         
         case REMOVE_CART_ITEM:
             const index = action.payload;
-            const existingProd = state.cartItems[index];
+            const existingItem = state.cartItems[index];
 
-            let remainingProductsAfterRemoving;
+            let remainingProducts;
 
-            if(existingProd.quantity === 1){
-                remainingProductsAfterRemoving = state.cartItems.filter(i => i !== index)
+            if(existingItem.quantity === 1){
+                return remainingProducts = state.cartItems.filter((item, i) => i !== index)
             } else{
-                const updatedProd = {
-                    ...existingProd,
-                    quantity: existingProd.quantity - 1
+                const updatedItemQuantity = {
+                    ...existingItem,
+                    quantity: existingItem.quantity - 1,
                 };
-                remainingProductsAfterRemoving = [...state.cartItems];
-                remainingProductsAfterRemoving[index] = updatedProd;
+                remainingProducts = [...state.cartItems];
+                remainingProducts[index] = updatedItemQuantity;
             }
 
             return {
                 ...state,
                 totalQuantity: state.totalQuantity - 1,
-                cartItems: remainingProductsAfterRemoving
+                cartItems: remainingProducts,
             };
 
         case CLEAR_CART:

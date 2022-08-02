@@ -19,7 +19,12 @@
 }
 
 .bold{
-    font-weight: bold;
+    font-weight: 400;
+}
+
+.boldMoney{
+    font-weight: 500;
+    margin: 10px 0;
 }
 
 .attributes{
@@ -68,13 +73,13 @@
     gap: 12px;
 }
 
-.action-button{
+.action-buttons{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
-.action-button button{
+.action-buttons button{
     width: 20px;
     height: 20px;
     border: 1px solid #1d1f22;
@@ -83,5 +88,5 @@
 .product-image{
     width: 150px;
     height: 220px;
-    object-fit: cover;
+    object-fit: contain;
 }

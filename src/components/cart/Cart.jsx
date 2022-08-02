@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import styles from "./styles/cart.module.css";
-import { setTotalAmount, clearCart, closeCart } from "../../store/actions";
+import styles from "./styles/Cart.module.css";
+import { setTotalAmountt, clearCart, closeCart } from "../../store/actions";
 import { connect } from "react-redux";
 import CartItems from "./CartItems";
 
@@ -12,7 +12,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    setTotalAmount: () => dispatch(setTotalAmount()),
+    setTotalAmount: () => dispatch(setTotalAmountt()),
     clearCart: () => dispatch(clearCart()),
     closeCart: () => dispatch(closeCart())
 });
@@ -31,15 +31,15 @@ class Cart extends Component {
         return(
             <div>
                 <ul className={styles["cart-list"]}>
-                    {this.props.cartItems.map((item, key) => {
+                    {this.props.cartItems.map((item, key) => (
                         <CartItems index={key} item={item} key={key} />
-                    })}
+                    ))}
                 </ul>
 
                 <div>
                     <div className={styles.order}>
                         <p>
-                            Tax of 21%: {this.props.cartItems.length === 0 ? (0) : (
+                            Tax 21%: {this.props.cartItems.length === 0 ? (0) : (
                                 <span>
                                     {this.props.currency.symbol}
                                     {(0.21 * this.props.totalPrice).toFixed(2)}

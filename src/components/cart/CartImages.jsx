@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styles from "./styles/CartImages.module.css";
-import { arrowRight, arrowLeft } from "../icons";
+import { arrowRight, arrowLeft } from "../icons/Icons";
 
 class CartImages extends Component{
 

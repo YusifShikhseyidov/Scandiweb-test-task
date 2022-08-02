@@ -12,10 +12,11 @@ class ProductPage extends Component{
     componentDidMount(){
         const itemId = this.props.match.params.productId;
 
-        request("http://localhost:4000/", productDetailsQuery(itemId)).then(
+        request("http://localhost:4000/", productDetailsQuery(itemId))
+        .then(
             ({product}) => this.setState({product: {...product, quantity: 1}})
         )
-        .catch((error) => console.log(error))
+        .catch((err) => console.log(err))
     }
 
     render() {

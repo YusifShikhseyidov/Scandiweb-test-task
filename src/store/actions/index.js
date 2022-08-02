@@ -12,13 +12,13 @@ export const setError = (errorMessage) =>({
     payload: errorMessage
 });
 
+export const toggleCart = () =>({
+    type: TOGGLE_CART,
+});
+
 export const addToCart = (product) =>({
     type: ADD_TO_CART,
     payload: product
-});
-
-export const toggleCart = () =>({
-    type: TOGGLE_CART,
 });
 
 export const removeCartItem = (id) =>({
@@ -47,6 +47,6 @@ export const closeCurrencyMenu = () =>({
     type: CLOSE_CURRENCY_MENU,
 });
 
-export const setTotalAmount = () =>({
+export const setTotalAmountt = () =>({
     type: SET_TOTAL_AMOUNT
 });

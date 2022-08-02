@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Products from "./Products";
+import Products from "../components/Products";
 import { closeCart, getProducts, setError } from "../store/actions";
 import { request } from "graphql-request";
 import { query } from "../queries";
@@ -52,7 +52,7 @@ class ProductListingPage extends Component {
             <>
                 {!this.state.isLoading && (
                     <div>
-                        <h1 className={category}> {this.props.category} </h1>
+                        <h1 className="category"> {this.props.category} </h1>
                         <Row>
                             {this.props.allProducts.map(product => (
                                 <div key={product.id}>

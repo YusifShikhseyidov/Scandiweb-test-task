@@ -9,7 +9,7 @@ import styled from "styled-components";
 const Grid = styled.div`
     display: grid;
     grid-template-columns: auto auto auto;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     grid-gap: 50px;
 `;
