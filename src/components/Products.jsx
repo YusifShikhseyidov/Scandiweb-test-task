@@ -90,7 +90,7 @@ class Products extends Component {
       product: items,
     })
   }
-  componentDidUpdate(previousState) {
+  componentDidUpdate(previousProps, previousState) {
     if (previousState.product.attributes !== this.state.product.attributes) {
       if (
         this.props.product.inStock &&

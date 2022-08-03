@@ -124,7 +124,7 @@ class Navbar extends Component{
                     </div>
 
                     {/* Currency menu part */}
-                    <div className={styles.secondPart}>
+                    <div className={styles.currencyMenuAndCart}>
                         <div className={styles.currencyMenu}>
                             {!this.props.isOpen && (
                                 <div>
