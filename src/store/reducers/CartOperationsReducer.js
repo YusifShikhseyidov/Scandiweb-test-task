@@ -30,7 +30,7 @@ const CartOperationsReducer = (state=initialState, action) => {
                 const updatedProduct = {
                     ...existingProduct,
                     quantity: existingProduct.quantity + 1,
-                    totalPrice: newProduct.singleprice * (existingProduct.quantity + 1)
+                    totalPrice: newProduct.singlePrice * (existingProduct.quantity + 1)
                 };
                 addedItems = [...state.cartItems];
                 addedItems[existingProductIndex] = updatedProduct;
@@ -39,7 +39,7 @@ const CartOperationsReducer = (state=initialState, action) => {
             if(!existingProduct){
                 const newestProduct = {
                     ...newProduct,
-                    totalPrice: newProduct.singleprice * newProduct.quantity
+                    totalPrice: newProduct.singlePrice * newProduct.quantity
                 };
                 addedItems = [...state.cartItems, newestProduct];
             }
@@ -99,21 +99,21 @@ const CartOperationsReducer = (state=initialState, action) => {
 
         case SET_TOTAL_AMOUNT:
             const getPriceLabel = (prices, currency) =>{
-                let _price_ = 0;
+                let realPrice = 0;
                 prices.forEach( price =>{
                     if(price.currency.label === currency){
-                        _price_ = price.amount;
+                        realPrice = price.amount;
                         return;
                     }
                 })
 
-                return _price_;
+                return realPrice;
             }
 
             const newCartItems = state.cartItems.map( product =>{
                 return {
                     ...product,
-                    singleprice: getPriceLabel(product.prices, state.currency.label),
+                    singlePrice: getPriceLabel(product.prices, state.currency.label),
                     totalPrice: getPriceLabel(product.prices, state.currency.label) * product.quantity
                 };
             });

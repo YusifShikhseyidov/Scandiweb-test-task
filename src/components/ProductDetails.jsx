@@ -29,14 +29,14 @@ class ProductDetails extends Component {
   }
 
   getPriceLabel = (prices) => {
-    let _price_ = 0
+    let realPrice = 0
     prices.forEach((price) => {
       if (price.currency.label === this.props.currency.label) {
-        _price_ = price.amount
+        realPrice = price.amount
         return
       }
     })
-    return _price_;
+    return realPrice;
   }
 
   componentDidUpdate(previousProps, previousState) {
@@ -144,7 +144,7 @@ class ProductDetails extends Component {
           <div className={styles.description}>
             <Markup content={this.props.product.description} />
           </div>
-          
+
         </div>
       </div>
     )
