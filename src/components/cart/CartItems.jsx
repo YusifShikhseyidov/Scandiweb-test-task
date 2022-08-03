@@ -46,7 +46,7 @@ class CartItems extends Component {
     render() {
         return(
             <>
-                <li onClick={this.setTotalAMount}>
+                <li>
                     <div className={styles.layout}>
                         <div className={styles["row-one"]}>
                             <span>
