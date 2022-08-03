@@ -9,6 +9,14 @@
     text-transform: uppercase;
 }
 
+/* .productsRow{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: space-between;
+    align-items: center;
+    row-gap: 49px;
+} */
+
 .category-list{
     display: flex;
     flex-direction: column;

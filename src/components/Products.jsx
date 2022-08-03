@@ -54,12 +54,10 @@ const AttributeSelector = styled.div`
 
 const mapStateToProps = (state) => ({
   currency: state.cart.currency,
-  currency_: state.cart,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   addItemsToCart: (item) => dispatch(addToCart(item)),
-
   setTotalAmount: () => dispatch(setTotalAmountt()),
 });
 
@@ -71,15 +69,20 @@ class Products extends Component {
   }
 
   getPriceLabel = (prices) => {
-    let price_ = 0
+    let _price_ = 0
     prices.forEach((price) => {
       if (price.currency.label === this.props.currency.label) {
-        price_ = price.amount
+        _price_ = price.amount
         return
       }
     })
-    return price_
+    return _price_
   }
+
+  // componentDidMount(){
+  //   const prods = this.state.product
+  //   console.log(prods)
+  // }
 
   setSelectedValue = (attribute, attribute_item) => {
     const items = JSON.parse(JSON.stringify(this.state.product))
@@ -90,6 +93,7 @@ class Products extends Component {
       product: items,
     })
   }
+
   componentDidUpdate(previousProps, previousState) {
     if (previousState.product.attributes !== this.state.product.attributes) {
       if (
@@ -100,6 +104,7 @@ class Products extends Component {
       }
     }
   }
+  
   addToCartHandler = (e) => {
     e.preventDefault()
     this.props.addItemsToCart(this.state.product)
@@ -156,9 +161,9 @@ class Products extends Component {
             <AttributeSelector>
               {this.state.product.attributes.map((attribute, index) => (
                 <div key={index}>
-                  <p className={styles.bold}>{attribute.name}:</p>
+                  <p>{attribute.name}:</p>
                   <div className={styles.attributes}>
-                    {attribute.items.map((item, i) => {
+                    {attribute.items?.map((item, i) => {
                       if (attribute.type === "swatch"){
                         return (
                           <div key={i} className={styles["color-box"]}>
@@ -170,13 +175,13 @@ class Products extends Component {
                           </div>
                         )} else{
                             return (
-                                <div key={i} className={styles["size-box"]}>
-                                    <button
-                                      className={ attribute.selected === item.value ? styles["selected-size"] : "" }
-                                      onClick={() => this.setSelectedValue(index, item) }
-                                    > {item.value}
-                                    </button>
-                                </div>
+                              <div key={i} className={styles["size-box"]}>
+                                <button
+                                  className={ attribute.selected === item.value ? styles["selected-size"] : "" }
+                                  onClick={() => this.setSelectedValue(index, item) }
+                                > {item.value}
+                                </button>
+                              </div>
                             )
                         }
                     })}
@@ -201,9 +206,8 @@ class Products extends Component {
           )}
         </>
         <Link to={"/product/" + this.props.product.id}>
-          <ProductsCard
-            className={!this.props.product.inStock && styles.opacity}
-          >
+          <ProductsCard className={!this.props.product.inStock && styles.opacity}>
+            
             {!this.props.product.inStock && (
               <p className={styles["out-of-stock"]}>out of stock</p>
             )}
@@ -218,6 +222,7 @@ class Products extends Component {
               {this.props.currency.symbol}
               {this.getPriceLabel(this.props.product.prices)}
             </span>
+
           </ProductsCard>
         </Link>
       </Wrapper>

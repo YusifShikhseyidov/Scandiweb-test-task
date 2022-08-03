@@ -9,7 +9,7 @@ import styled from "styled-components";
 const Grid = styled.div`
     display: grid;
     grid-template-columns: auto auto auto;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     grid-gap: 50px;
 `;
@@ -44,7 +44,7 @@ class ClothesPage extends Component {
                 <h2 className="category">{ this.state.products?.name}</h2>
                 {this.state.products === null ? ( <div>A Second please...</div> ) : (
                     <Grid>
-                        {this.state.products.products.map( (product) => (
+                        {this.state.products?.products?.map( (product) => (
                             <div key={product.id} >
                                 <Products product={product} id={product.id} />
                             </div>

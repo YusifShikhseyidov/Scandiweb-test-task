@@ -89,6 +89,7 @@ class Navbar extends Component{
         try{
             const response = await request("http://localhost:4000/", currencyQuery);
             const data = await response.currencies;
+            // console.log(data)
             this.setState({ ...this.state, currencies: data });
         }
         catch(error) {
@@ -148,16 +149,17 @@ class Navbar extends Component{
                                         {/* {arrowUp} */}
                                         <img src={arrowUp} alt="arrowUp" />
                                     </button>
+                                
+                            
+                                
+                                    <Ul>
+                                        {this.state.currencies.map((currency, i) => (
+                                            <li key={i} onClick={() => this.props.setCurrency(currency)}>
+                                                {currency.symbol} {currency.label}
+                                            </li>
+                                        ))}
+                                    </Ul>
                                 </>
-                            )}
-                            {this.props.isOpen && (
-                                <Ul>
-                                    {this.state.currencies.map((currency, i) => (
-                                        <li key={i} onClick={() => this.props.setCurrency(currency)}>
-                                            {currency.symbol} {currency.label}
-                                        </li>
-                                    ))}
-                                </Ul>
                             )}
                         </div>
 

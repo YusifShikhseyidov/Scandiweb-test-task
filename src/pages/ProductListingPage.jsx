@@ -11,7 +11,7 @@ const Row=styled.div`
     grid-template-columns: auto auto auto;
     justify-content: space-between;
     align-items: center;
-    row-gap: 49px;
+    row-gap: 50px;
 `
 
 const mapStateToProps = (state) => ({
@@ -39,7 +39,7 @@ class ProductListingPage extends Component {
                 request("http://localhost:4000/", query).then( data => this.props.getProducts(data.category))
                 this.setState({isLoading: false})
             } catch(error) {
-                this.props.setError(error.message)
+                this.props.setErrorMessage(error.message)
             }
         }
 

@@ -7,6 +7,8 @@ import { Markup } from "interweave"
 const mapStateToProps = (state) => ({
   currency: state.cart.currency,
 })
+
+
 const mapDispatchToProps = (dispatch) => ({
   addProductsToCart: (product) => dispatch(addToCart(product)),
   setTotalAmount: () => dispatch(setTotalAmountt()),
@@ -65,7 +67,7 @@ class ProductDetails extends Component {
     return (
       <div className={styles.layout}>
         <div className={styles["image-box"]}>
-          <div className={styles["side-images"]}>
+          <div className={styles["left-side-images"]}>
             {this.props.product.gallery.map((img, key) => (
               <img
                 onClick={() => this.setState({ selectedImage: img })}
@@ -93,14 +95,8 @@ class ProductDetails extends Component {
                       return (
                         <div key={i} className={styles["color-box"]}>
                           <button
-                            className={
-                              attribute.selected === item.value
-                                ? styles["selected-color"]
-                                : ""
-                            }
-                            style={{
-                              backgroundColor: item.value,
-                            }}
+                            className={ attribute.selected === item.value ? styles["selected-color"] : "" }
+                            style={{ backgroundColor: item.value, }}
                             onClick={() => this.setSelectedValue(attrib, item)}
                           ></button>
                         </div>
@@ -109,11 +105,7 @@ class ProductDetails extends Component {
                       return (
                         <div key={i} className={styles["size-box"]}>
                           <button
-                            className={
-                              attribute.selected === item.value
-                                ? styles["selected-size"]
-                                : ""
-                            }
+                            className={ attribute.selected === item.value ? styles["selected-size"] : "" }
                             onClick={() => this.setSelectedValue(attrib, item)}
                           >
                             {item.value}
@@ -125,6 +117,7 @@ class ProductDetails extends Component {
                 </div>
               </div>
             ))}
+
             <div className={styles.price}>
               <p>Price:</p>
               <span>
@@ -147,9 +140,11 @@ class ProductDetails extends Component {
               )}
             </form>
           </div>
+
           <div className={styles.description}>
             <Markup content={this.props.product.description} />
           </div>
+          
         </div>
       </div>
     )
