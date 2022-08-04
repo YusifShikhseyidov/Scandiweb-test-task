@@ -35,7 +35,7 @@
     color: #57ee84;
 }
 
-.active{
+.activeLink{
     border-bottom: 2px solid #57ee84;
     color: #57ee84 !important;
 }

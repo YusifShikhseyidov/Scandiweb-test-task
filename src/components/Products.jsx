@@ -7,29 +7,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 
-const CartIcon = styled.button`
-  position: absolute;
-  bottom: 18%;
-  left: 75%;
-  padding: 6px 8px;
-  background-color: #5ece7b;
-  border-radius: 50%;
-  color: #fff;
-  transform: translate(50%, 0%);
-  opacity: 0;
-  animation: all 0.3s ease-out;
-  z-index: 111;
-  &:disabled {
-    opacity: 0;
-  }
-`
-const Wrapper = styled.div`
-  position: relative;
-  &:hover ${CartIcon} {
-    opacity: 1;
-  }
-`
-
 const ProductsCard = styled.div`
   padding: 12px;
   max-width: fit-content;
@@ -120,27 +97,29 @@ class Products extends Component {
 
   render() {
     return (
-      <Wrapper>
+      <div className={styles.productSkeleton}>
         <>
           <>
             {this.props.product.attributes.length !== 0 ? (
               <>
                 {this.props.product.inStock ? (
-                  <CartIcon
+                  <button
+                    className={styles["cartIcon-button"]}
                     onClick={() =>
                       this.setState({ isShown: !this.state.isShown })
                     }
                   >
                     <img src={sendToCart} alt="cartIconnn" />
-                  </CartIcon>
+                  </button>
                 ) : (
-                  <CartIcon disabled={true}><img src={sendToCart} alt="cartIconnn" /></CartIcon>
+                  <button className={styles["cartIcon-button"]} disabled={true}><img src={sendToCart} alt="cartIconnn" /></button>
                 )}
               </>
             ) : (
               <>
                 {this.props.product.inStock ? (
-                  <CartIcon
+                  <button
+                    className={styles["cartIcon-button"]}
                     onClick={() =>
                       this.props.addItemsToCart({
                         ...this.props.product,
@@ -149,9 +128,9 @@ class Products extends Component {
                     }
                   >
                     <img src={sendToCart} alt="cartIconnn" />
-                  </CartIcon>
+                  </button>
                 ) : (
-                  <CartIcon disabled={true}><img src={sendToCart} alt="cartIconnn" /></CartIcon>
+                  <button className={styles["cartIcon-button"]} disabled={true}><img src={sendToCart} alt="cartIconnn" /></button>
                 )}
               </>
             )}
@@ -225,7 +204,7 @@ class Products extends Component {
 
           </ProductsCard>
         </Link>
-      </Wrapper>
+      </div>
     )
   }
 }

@@ -1,3 +1,29 @@
+.productSkeleton{
+  position: relative;
+}
+
+.cartIcon-button{
+  position: absolute;
+  bottom: 18%;
+  left: 75%;
+  padding: 6px 8px;
+  background-color: #5ece7b;
+  color: #fff;
+  border-radius: 50%;
+  transform: translate(50%, 0);
+  opacity: 0;
+  z-index: 111;
+  transition: all 0.5s ease-in-out;
+}
+
+.cartIcon-button:disabled{
+  opacity: 0;
+}
+
+.productSkeleton:hover .cartIcon-button{
+  opacity: 1;
+}
+
 .attributes {
   display: flex;
   gap: 6px;

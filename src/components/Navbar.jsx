@@ -111,7 +111,7 @@ class Navbar extends Component{
                     <ul className={styles.navlinks}>
                         { this.props.categories.map((category) =>(
                             <li key={category.name}>
-                                <NavLink exact activeClassName={styles.active} to={`/${category.name}`} >
+                                <NavLink exact activeClassName={styles.activeLink} to={`/${category.name}`} >
                                     {category.name}
                                 </NavLink>
                             </li>
@@ -133,8 +133,7 @@ class Navbar extends Component{
                                         <span className={styles.currencyy} >
                                             { this.props.currency.symbol }
                                         </span>
-                                        {" "}
-                                        {/* {arrowDown} */}
+
                                         <img src={arrowDown} alt="arrowDown" />
                                     </button>
                                 </div>
@@ -145,13 +144,12 @@ class Navbar extends Component{
                                         <span className={styles.currencyy} >
                                             { this.props.currency.symbol }
                                         </span>
-                                        {" "}
-                                        {/* {arrowUp} */}
+                                        
                                         <img src={arrowUp} alt="arrowUp" />
                                     </button>
                                 
                             
-                                
+                                    {/* Currencies */}
                                     <Ul>
                                         {this.state.currencies.map((currency, i) => (
                                             <li key={i} onClick={() => this.props.setCurrency(currency)}>
