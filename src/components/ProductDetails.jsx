@@ -86,8 +86,8 @@ class ProductDetails extends Component {
           <h1>{this.props.product.brand}</h1>
           <h2>{this.props.product.name}</h2>
           <div>
-            {this.state.product.attributes.map((attribute, attrib) => (
-              <div key={attrib}>
+            {this.state.product.attributes.map((attribute, index) => (
+              <div key={index}>
                 <p className={styles.bold}>{attribute.name}:</p>
                 <div className={styles.attributes}>
                   {attribute.items.map((item, i) => {
@@ -97,7 +97,7 @@ class ProductDetails extends Component {
                           <button
                             className={ attribute.selected === item.value ? styles["selected-color"] : "" }
                             style={{ backgroundColor: item.value, }}
-                            onClick={() => this.setSelectedValue(attrib, item)}
+                            onClick={() => this.setSelectedValue(index, item)}
                           ></button>
                         </div>
                       )
@@ -106,7 +106,7 @@ class ProductDetails extends Component {
                         <div key={i} className={styles["size-box"]}>
                           <button
                             className={ attribute.selected === item.value ? styles["selected-size"] : "" }
-                            onClick={() => this.setSelectedValue(attrib, item)}
+                            onClick={() => this.setSelectedValue(index, item)}
                           >
                             {item.value}
                           </button>
