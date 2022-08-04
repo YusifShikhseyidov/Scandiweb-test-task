@@ -85,13 +85,14 @@ class Products extends Component {
   addToCartHandler = (e) => {
     e.preventDefault()
     this.props.addItemsToCart(this.state.product)
+    this.props.setTotalAmount()
     this.setState({
       ...this.state,
       isShown: false,
       product: this.props.product,
       disabled: true,
     })
-    this.props.setTotalAmount()
+    
   }
 
 
