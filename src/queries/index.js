@@ -96,6 +96,11 @@ export const clothesQuery = gql`
                     id
                     name
                     type
+                    items{
+                        displayValue,
+                        value,
+                        id
+                    }
                 }
                 prices{
                     currency{
@@ -125,6 +130,11 @@ export const techQuery = gql`
                     id
                     name
                     type
+                    items{
+                        displayValue,
+                        value,
+                        id
+                    }
                 }
                 prices{
                     currency{

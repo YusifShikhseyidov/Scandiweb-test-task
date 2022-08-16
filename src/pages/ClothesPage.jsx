@@ -1,42 +1,68 @@
 import React, { Component } from "react";
 import Products from "../components/Products";
 import {connect} from "react-redux";
-import {closeCart} from "../store/actions";
-import request from "graphql-request";
+import {closeCart, getProducts} from "../store/actions";
+import { request } from "graphql-request";
 import {clothesQuery} from "../queries";
 import styled from "styled-components";
 
-const Grid = styled.div`
+const Grid = styled.div.attrs({
+    className: "clothProductsRow"
+})`
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
     justify-content: space-between;
     align-items: center;
-    grid-gap: 50px;
+    column-gap: 50px;
 `;
 
+const mapStateToProps = (state) => ({
+    allProducts: state.productList.products.products || [],
+    category: state.productList.products.name,
+    isError: state.productList.isError,
+    errorMessage: state.productList.errorMessage
+});
+
 const mapDispatchToProps = (dispatch) => ({
+    getProducts: (product) => dispatch(getProducts(product)),
     closeCart: () => dispatch(closeCart())
 });
 
 class ClothesPage extends Component {
     state = {
-        products: null
+        isLoading: false
+        // products: null
     }
 
     componentDidMount() {
+        const getClothesProducts = async () => {
+            this.setState({isLoading: true})
+            try{
+                await request("http://localhost:4000/", clothesQuery).then( data => this.props.getProducts(data.category))
+                this.setState({isLoading: false})
+            } catch(error) {
+                this.props.setErrorMessage(error.message)
+            }
+        }
+
+        getClothesProducts();
         this.props.closeCart();
-        this.getClothesProducts();
+        console.log(this.props)
+        console.log(this.state)
     }
 
-    getClothesProducts = async () =>{
-        try{
-            const repsonse = await request("http://localhost:4000/", clothesQuery);
-            const data = await repsonse.category;
-            this.setState({...this.state, products: data});
-        } catch (error){
-            console.log(error);
-        }
-    }
+
+
+    // getClothesProducts = async () =>{
+    //     try{
+    //         const repsonse = await request("http://localhost:4000/", clothesQuery);
+    //         const data = await repsonse.category;
+    //         console.log(data)
+    //         this.setState({...this.state, products: data});
+    //     } catch (error){
+    //         console.log(error);
+    //     }
+    // };
 
     render() {
         return(
@@ -44,8 +70,8 @@ class ClothesPage extends Component {
                 <h2 className="category">{ this.state.products?.name}</h2>
                 {this.state.products === null ? ( <div>A Second please...</div> ) : (
                     <Grid>
-                        {this.state.products?.products?.map( (product) => (
-                            <div key={product.id} >
+                        {this.props.allProducts.map( (product) => (
+                            <div key={product.id} className="clothProductsRow-div-content" >
                                 <Products product={product} id={product.id} />
                             </div>
                         ))}
@@ -56,4 +82,4 @@ class ClothesPage extends Component {
     }
 }
 
-export default connect( (state) => state, mapDispatchToProps)(ClothesPage);
+export default connect( mapStateToProps, mapDispatchToProps)(ClothesPage);

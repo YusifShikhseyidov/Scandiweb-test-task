@@ -35,7 +35,7 @@ const Ul = styled.ul`
     }
 
     li:hover{
-        background-color: #ccc;
+        background-color: #EEEEEE;
     }
 `
 
@@ -48,7 +48,7 @@ const Overlay = styled.span`
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    overflow: scroll;
+    overflow: hidden;
     z-index: 2;
 `
 
@@ -77,6 +77,7 @@ class Navbar extends Component{
 
     componentDidMount(){
         this.getCurrencies();
+        console.log(this.props.categories)
     }
 
     componentDidUpdate(previousProps){
@@ -120,7 +121,6 @@ class Navbar extends Component{
                     
                     {/* Site logo */}
                     <div>
-                        {/* <span className={styles.logo}> {iconLogo} </span> */}
                         <img src={logo} style={{width: 35}} alt="logo" />
                     </div>
 
@@ -166,7 +166,6 @@ class Navbar extends Component{
                         {/* Cart Section */}
                         <div className={styles.cart} >
                             <button onClick={() => this.props.toggleCartHandler()}>
-                                {/* {cart} */}
                                 <img src={cart} alt="cart" />
                             </button>
                             {this.props.cartItems.length > 0 && (
@@ -183,12 +182,12 @@ class Navbar extends Component{
                                         <>
                                             <div>
                                                 <p className={styles.bag}>
-                                                    <span className={styles.bold}>My Bag </span>
+                                                    <span className={styles.bold}>My Bag, </span>
                                                     {this.props.totalCartItems} items
                                                 </p>
                                             </div>
-                                            {this.props.cartItems.map((product, key) => (
-                                                <MiniCart index={key} item={product} key={key} />
+                                            {this.props.cartItems.map((item, key) => (
+                                                <MiniCart index={key} item={item} key={key} />
                                             ))}
                                             <div className={styles.total}>
                                                 <p>Total</p>
@@ -201,7 +200,7 @@ class Navbar extends Component{
                                                 <Link to={"/cart"}>
                                                     <button>View Bag</button>
                                                 </Link>
-                                                <button>Checkout</button>
+                                                <button>Check out</button>
                                             </div>
                                         </>
                                     )}

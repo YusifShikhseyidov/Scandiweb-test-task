@@ -18,13 +18,11 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class Cart extends Component {
-    // state={
-    //     items: []
-    // }
 
     componentDidMount() {
         this.props.setTotalAmount();
         this.props.closeCart();
+        console.log(this.props)
     }
 
     render() {
@@ -38,16 +36,16 @@ class Cart extends Component {
 
                 <div>
                     <div className={styles.order}>
-                        <p>
-                            Tax 21%: {this.props.cartItems.length === 0 ? (0) : (
+                        <p className={styles["order-firstChild"]}>
+                            Tax 21%: &nbsp;&nbsp;{this.props.cartItems.length === 0 ? (0) : (
                                 <span>
                                     {this.props.currency.symbol}
                                     {(0.21 * this.props.totalPrice).toFixed(2)}
                                 </span>
                             )}
                         </p>
-                        <p>Quantity: <span>{this.props.totalCartItems}</span></p>
-                        <p>Total: {this.props.cartItems.length === 0 ? (0) : (
+                        <p className={styles["order-firstChild"]}>Quantity: <span>{this.props.totalCartItems}</span></p>
+                        <p className={styles["order-secondChild"]}>Total: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.props.cartItems.length === 0 ? (0) : (
                             <span>
                                 {this.props.currency.symbol}
                                 {this.props.totalPrice.toFixed(2)}

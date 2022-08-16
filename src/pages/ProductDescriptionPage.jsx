@@ -4,7 +4,7 @@ import { request } from "graphql-request";
 import {productDetailsQuery} from "../queries";
 import {withRouter} from "react-router-dom";
 
-class ProductPage extends Component{
+class ProductDescriptionPage extends Component{
     state={
         product: null
     }
@@ -30,4 +30,4 @@ class ProductPage extends Component{
     }
 }
 
-export default withRouter(ProductPage);
+export default withRouter(ProductDescriptionPage);

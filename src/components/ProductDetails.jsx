@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
 
 
 const mapDispatchToProps = (dispatch) => ({
-  addProductsToCart: (product) => dispatch(addToCart(product)),
+  addProductToCart: (product) => dispatch(addToCart(product)),
   setTotalAmount: () => dispatch(setTotalAmountt()),
 })
 
@@ -20,6 +20,7 @@ class ProductDetails extends Component {
     disabled: true,
     product: this.props.product,
   }
+
 
   setSelectedValue = (attr, attr_item) => {
     const items = JSON.parse(JSON.stringify(this.state.product))
@@ -50,9 +51,9 @@ class ProductDetails extends Component {
     }
   }
 
-  addToCartHadler = (e) => {
+  addToCartHandler = (e) => {
     e.preventDefault()
-    this.props.addProductsToCart(this.state.product)
+    this.props.addProductToCart(this.state.product)
     this.props.setTotalAmount()
     this.setState({
       ...this.state,
@@ -66,31 +67,72 @@ class ProductDetails extends Component {
   render() {
     return (
       <div className={styles.layout}>
+
+        {/* Images of the product section of the page (left part) */}
         <div className={styles["image-box"]}>
           <div className={styles["left-side-images"]}>
             {this.props.product.gallery.map((img, key) => (
-              <img
-                onClick={() => this.setState({ selectedImage: img })}
-                key={key}
-                src={img}
-                alt=""
-              />
+              
+              <div key={key} className={styles["left-side-images-container"]}>
+                
+                {!this.props.product.inStock && (
+                  <p className={styles["out-of-stock-side-images"]}>out of stock</p>
+                )}
+
+                {!this.props.product.inStock ? (
+                  <div key={key} className={styles.opacity}>
+                    <img
+                      onClick={() => this.setState({ selectedImage: img })}
+                      src={img}
+                      alt="/"
+                    />
+                </div>
+                ) : (
+                  <div key={key}>
+                    <img
+                      onClick={() => this.setState({ selectedImage: img })}
+                      src={img}
+                      alt="/"
+                    />
+                  </div>
+                )}
+                  
+              </div>
+
             ))}
           </div>
-          <div className={styles["main-image"]}>
-            <img src={this.state.selectedImage} alt="" />
+          <div className={styles["main-image-wrapper"]}>
+            {!this.props.product.inStock && (
+              <p className={styles["out-of-stock-main-image"]}>out of stock</p>
+            )}
+            {!this.props.product.inStock ? (
+              <div className={styles.opacity}>
+                <img src={this.state.selectedImage} alt="/" />
+              </div>
+            ) : (
+              <div className={styles["main-image"]}>
+                <img src={this.state.selectedImage} alt="/" />
+              </div>
+            )}
           </div>
+          
+          
         </div>
 
+        {/* Details about the product section (right part) */}
         <div className={styles["product-info"]}>
-          <h1>{this.props.product.brand}</h1>
-          <h2>{this.props.product.name}</h2>
+
           <div>
-            {this.state.product.attributes.map((attribute, index) => (
+            <p className={styles["item-brand"]}>{this.state.product.brand}</p>
+            <p className={styles["item-name"]}>{this.state.product.name}</p>
+          </div>
+          
+          <div>
+            {this.state.product.attributes?.map((attribute, index) => (
               <div key={index}>
                 <p className={styles.bold}>{attribute.name}:</p>
                 <div className={styles.attributes}>
-                  {attribute.items.map((item, i) => {
+                  {attribute.items?.map((item, i) => {
                     if (attribute.type === "swatch"){
                       return (
                         <div key={i} className={styles["color-box"]}>
@@ -118,17 +160,25 @@ class ProductDetails extends Component {
               </div>
             ))}
 
-            <div className={styles.price}>
+            <div className={styles["item-price"]}>
               <p>Price:</p>
               <span>
                 {this.props.currency.symbol}
-                {this.getPriceLabel(this.props.product.prices)}
+                {this.getPriceLabel(this.props.product.prices).toFixed(2)}
               </span>
             </div>
-            <form onSubmit={this.addToCartHadler}>
-              {this.props.product.inStock ? (
+            
+            <form onSubmit={this.addToCartHandler}>
+              {(this.state.product.inStock && this.state.product.attributes.length > 0) ? (
                 <button
                   disabled={this.state.disabled}
+                  className={styles["addToCart-button"]}
+                >
+                  ADD TO CART
+                </button>
+              ) : (this.state.product.inStock && this.state.product.name === "AirTag") ? (
+                <button
+                  disabled={!this.state.disabled}
                   className={styles["addToCart-button"]}
                 >
                   ADD TO CART

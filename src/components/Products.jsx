@@ -7,22 +7,32 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 
-const ProductsCard = styled.div`
-  padding: 12px;
-  max-width: fit-content;
-  max-width: -moz-fit-content;
+const ProductCard = styled.div.attrs({
+  className: "productCardContainer"
+})`
+  padding: 16px;
+  width: fit-content;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
 
   &:hover {
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
   }
 `
-const AttributeSelector = styled.div`
+const AttributeSelector = styled.div.attrs({
+  className: "attributeSelectingIcon"
+})`
   position: absolute;
+  left: 16%;
+  bottom: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   background-color: #fff;
   border-radius: 11px;
-  bottom: 20%;
-  left: 16%;
   transform: translate(-3%, -13%);
   padding: 10px;
   z-index: 111;
@@ -34,7 +44,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addItemsToCart: (item) => dispatch(addToCart(item)),
+  addProductToCart: (product) => dispatch(addToCart(product)),
   setTotalAmount: () => dispatch(setTotalAmountt()),
 });
 
@@ -56,10 +66,11 @@ class Products extends Component {
     return realPrice;
   }
 
-  // componentDidMount(){
-  //   const prods = this.state.product
-  //   console.log(prods)
-  // }
+  componentDidMount(){
+    console.log("products")
+    console.log(this.props)
+    console.log(this.state)
+  }
 
   setSelectedValue = (attribute, attribute_item) => {
     const items = JSON.parse(JSON.stringify(this.state.product))
@@ -84,7 +95,7 @@ class Products extends Component {
   
   addToCartHandler = (e) => {
     e.preventDefault()
-    this.props.addItemsToCart(this.state.product)
+    this.props.addProductToCart(this.state.product)
     this.props.setTotalAmount()
     this.setState({
       ...this.state,
@@ -104,12 +115,7 @@ class Products extends Component {
             {this.props.product.attributes.length !== 0 ? (
               <>
                 {this.props.product.inStock ? (
-                  <button
-                    className={styles["cartIcon-button"]}
-                    onClick={() =>
-                      this.setState({ isShown: !this.state.isShown })
-                    }
-                  >
+                  <button className={styles["cartIcon-button"]} onClick={() => this.setState({ isShown: !this.state.isShown })}>
                     <img src={sendToCart} alt="cartIconnn" />
                   </button>
                 ) : (
@@ -122,7 +128,7 @@ class Products extends Component {
                   <button
                     className={styles["cartIcon-button"]}
                     onClick={() =>
-                      this.props.addItemsToCart({
+                      this.props.addProductToCart({
                         ...this.props.product,
                         singlePrice: this.state.price,
                       })
@@ -186,7 +192,7 @@ class Products extends Component {
           )}
         </>
         <Link to={"/product/" + this.props.product.id}>
-          <ProductsCard className={!this.props.product.inStock && styles.opacity}>
+          <ProductCard className={!this.props.product.inStock && styles.opacity}>
             
             {!this.props.product.inStock && (
               <p className={styles["out-of-stock"]}>out of stock</p>
@@ -203,7 +209,7 @@ class Products extends Component {
               {this.getPriceLabel(this.props.product.prices)}
             </span>
 
-          </ProductsCard>
+          </ProductCard>
         </Link>
       </div>
     )

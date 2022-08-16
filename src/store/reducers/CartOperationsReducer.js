@@ -10,6 +10,7 @@ export const SET_TOTAL_AMOUNT="SET_TOTAL_AMOUNT";
 const initialState = {
     cartItems: [],
     totalQuantity: 0,
+    PriceInTotal: 0,
     isOpen: false,
     currency: {
         label: "USD",

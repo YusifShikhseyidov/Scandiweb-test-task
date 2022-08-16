@@ -38,6 +38,11 @@ class MiniCart extends Component{
         return realPrice;
     }
 
+    componentDidMount(){
+        const qida = this.props;
+        console.log(qida)
+    }
+
 
     render(){
         return(
@@ -45,18 +50,18 @@ class MiniCart extends Component{
                 <li>
                     <div className={styles.layout}>
                         <div className={styles["row-one"]}>
-                            <span>
-                                <p className={styles.bold}>{this.props.item.brand}</p>
+                            <div className={styles.itemModel}>
+                                <p>{this.props.item.brand}</p>
                                 <p>{this.props.item.name}</p>
-                            </span>
+                            </div>
                             <p className={styles.boldMoney}>
                                 {this.props.currency.symbol}
-                                {this.getPriceLabel(this.props.item.prices).toFixed(2)}
+                                {this.getPriceLabel(this.props.item.prices)}
                             </p>
 
                             {this.props.item.attributes.map((attribute, atribute) => (
                                 <div key={atribute}>
-                                    <p className={styles.bold}>{attribute.name}</p>
+                                    <p className={styles.attrName}>{attribute.name}:</p>
                                     <div className={styles.attributes}>
                                         {attribute.items.map((item, index) =>{
                                             if(attribute.type === "swatch"){

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap');
+
+
 .cart-list{
     padding: 12px 0;
     list-style: none !important;
@@ -9,16 +12,42 @@
     gap: 6px;
 }
 
-.order span{
-    font-weight: bolds;
+.order .order-firstChild{
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 400;
+}
+
+.order .order-secondChild{
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 500;
+}
+
+.order .order-firstChild span{
+    font-weight: 700;
+}
+
+.order .order-secondChild span{
+    font-weight: 700;
+    line-height: 24px;
 }
 
 .order-button{
-    width: 201px;
-    height: 42px;
+    width: 279px;
+    height: 43px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 12px 0;
     padding: 16px 32px;
     text-transform: uppercase;
     color: #fff;
-    background-color: #5ece7b;    
+    background-color: #5ece7b;
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 120%;
 }

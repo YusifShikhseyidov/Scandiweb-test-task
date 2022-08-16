@@ -49,18 +49,18 @@ class CartItems extends Component {
                 <li>
                     <div className={styles.layout}>
                         <div className={styles["row-one"]}>
-                            <span>
-                                <p className={styles.bold}>{this.props.item.brand}</p>
-                                <p>{this.props.item.name}</p>
-                            </span>
-                            <p className={styles.bold}>
+                            <div>
+                                <p className={styles["item-brand"]}>{this.props.item.brand}</p>
+                                <p className={styles["item-name"]}>{this.props.item.name}</p>
+                            </div>
+                            <p className={styles["item-price"]}>
                                 {this.props.currency.symbol}
                                 {this.getPriceLabel(this.props.item.prices).toFixed(2)}
                             </p>
 
                             {this.props.item.attributes.map((attribute, atribute) => (
                                 <div key={atribute}>
-                                    <p className={styles.bold}>{attribute.name}</p>
+                                    <p className={styles.bold}>{attribute.name}:</p>
                                     <div className={styles.attributes}>
                                         {attribute.items.map((item, index) =>{
                                             if(attribute.type === "swatch"){

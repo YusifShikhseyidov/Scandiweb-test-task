@@ -5,8 +5,9 @@ class CartPage extends Component{
     render(){
         return(
             <div>
-                <h2>Cart</h2>
-                <br/>
+                <h2>CART</h2>
+                <br />
+                <hr/>
                 <Cart/>
             </div>
         )

@@ -29,7 +29,7 @@ class CartImages extends Component{
     render() {
         return(
             <div className={styles["images-container"]}>
-                <img src={this.props.images[this.state.position]} alt="product-image" />
+                <img src={this.props.images[this.state.position]} alt="/" />
                 {this.props.images.length > 1 && (
                     <div className={styles["buttons-container"]}>
                         <button onClick={this.leftSlide}>{arrowLeft}</button>

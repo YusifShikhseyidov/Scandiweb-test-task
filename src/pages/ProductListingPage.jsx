@@ -6,12 +6,14 @@ import { query } from "../queries";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
-const Row=styled.div`
+const Row=styled.div.attrs({
+    className: "plpProductsRow"
+})`
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
     justify-content: space-between;
     align-items: center;
-    row-gap: 50px;
+    column-gap: 50px;
 `
 
 const mapStateToProps = (state) => ({
@@ -36,7 +38,7 @@ class ProductListingPage extends Component {
         const getProducts = async () => {
             this.setState({isLoading: true})
             try{
-                request("http://localhost:4000/", query).then( data => this.props.getProducts(data.category))
+                await request("http://localhost:4000/", query).then( data => this.props.getProducts(data.category))
                 this.setState({isLoading: false})
             } catch(error) {
                 this.props.setErrorMessage(error.message)
@@ -45,6 +47,8 @@ class ProductListingPage extends Component {
 
         getProducts()
         this.props.closeCart()
+        console.log(this.props)
+        console.log(this.state)
     }
 
     render() {
@@ -55,7 +59,7 @@ class ProductListingPage extends Component {
                         <h1 className="category"> {this.props.category} </h1>
                         <Row>
                             {this.props.allProducts.map(product => (
-                                <div key={product.id}>
+                                <div key={product.id} className="plpProductsRow-div-content">
                                     <Products product={product} id={product.id} />
                                 </div>
                             ))}
