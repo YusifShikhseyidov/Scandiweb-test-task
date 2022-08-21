@@ -16,11 +16,6 @@
     text-transform: uppercase;
 }
 
-.plpProductsRow-div-content{
-    display: flex;
-    justify-content: center;
-}
-
 
 .category-list{
     display: flex;
@@ -42,9 +37,7 @@
     text-decoration: underline;
 }
 
-.plpProductsRow-div-content,
-.clothProductsRow-div-content,
-.techProductsRow-div-content{
+.plpProductsRow-div-content{
     display: flex;
     justify-content: center;
 }

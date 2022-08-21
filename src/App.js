@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from "react";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import Home from "./components/Home";

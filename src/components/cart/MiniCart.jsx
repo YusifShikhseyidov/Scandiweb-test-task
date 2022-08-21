@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from "react";
 import { addToCart, removeCartItem, setTotalAmountt } from "../../store/actions";
 import { connect } from "react-redux";
@@ -38,11 +39,6 @@ class MiniCart extends Component{
         return realPrice;
     }
 
-    componentDidMount(){
-        const qida = this.props;
-        console.log(qida)
-    }
-
 
     render(){
         return(
@@ -56,7 +52,7 @@ class MiniCart extends Component{
                             </div>
                             <p className={styles.boldMoney}>
                                 {this.props.currency.symbol}
-                                {this.getPriceLabel(this.props.item.prices)}
+                                {this.getPriceLabel(this.props.item.prices).toFixed(2)}
                             </p>
 
                             {this.props.item.attributes.map((attribute, atribute) => (
@@ -68,6 +64,13 @@ class MiniCart extends Component{
                                                 return(
                                                     <div key={index} className={styles["color-box"]}>
                                                         <span style={{ backgroundColor: item.value }} className={attribute.selected === item.value ? styles["selected-color"] : ""}></span>
+                                                    </div>
+                                                )
+                                            }else if(attribute.name === "Capacity"){
+                                                // Specific box size for long attribute values of capacity attribute other than type swatch or type text
+                                                return(
+                                                    <div key={index} className={styles["capacity-attribute-specific"]}>
+                                                        <span style={{ backgroundColor: item.value }} className={attribute.selected === item.value ? styles["selected-size"] : ""}>{item.value}</span>
                                                     </div>
                                                 )
                                             } else{

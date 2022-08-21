@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from "react";
 import styles from "./styles/Cart.module.css";
 import { setTotalAmountt, clearCart, closeCart } from "../../store/actions";
@@ -22,12 +23,16 @@ class Cart extends Component {
     componentDidMount() {
         this.props.setTotalAmount();
         this.props.closeCart();
-        console.log(this.props)
     }
 
     render() {
         return(
-            <div>
+            <div className={styles.seeCart}>
+
+                <h2 className={styles.cartHeading}>CART</h2>
+                
+                <hr/>
+
                 <ul className={styles["cart-list"]}>
                     {this.props.cartItems.map((item, key) => (
                         <CartItems index={key} item={item} key={key} />
@@ -44,13 +49,16 @@ class Cart extends Component {
                                 </span>
                             )}
                         </p>
-                        <p className={styles["order-firstChild"]}>Quantity: <span>{this.props.totalCartItems}</span></p>
-                        <p className={styles["order-secondChild"]}>Total: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.props.cartItems.length === 0 ? (0) : (
-                            <span>
-                                {this.props.currency.symbol}
-                                {this.props.totalPrice.toFixed(2)}
-                            </span>
-                        )}</p>
+                        <p className={styles["order-firstChild"]}>Quantity: {this.props.totalCartItems}</p>
+                        <div>
+                            <p className={styles["order-secondChild"]}>Total: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            {this.props.cartItems.length === 0 ? (<span className={styles.totalPriceee}>0</span>) : (
+                                <span className={styles.totalPriceee}>
+                                    {this.props.currency.symbol}
+                                    {this.props.totalPrice.toFixed(2)}
+                                </span>
+                            )}
+                        </div>
                     </div>
                     <button className={styles["order-button"]} onClick={() => this.props.clearCart()}>
                         Order

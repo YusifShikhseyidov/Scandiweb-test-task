@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from "react";
 import styles from "./styles/CartImages.module.css";
-import { arrowRight, arrowLeft } from "../icons/Icons";
+import { chevronLeft, chevronRight } from "../imports";
 
 class CartImages extends Component{
 
@@ -32,8 +33,8 @@ class CartImages extends Component{
                 <img src={this.props.images[this.state.position]} alt="/" />
                 {this.props.images.length > 1 && (
                     <div className={styles["buttons-container"]}>
-                        <button onClick={this.leftSlide}>{arrowLeft}</button>
-                        <button onClick={this.rightSlide}>{arrowRight}</button>
+                        <button onClick={this.leftSlide}><img src={chevronRight} alt="to-left" /></button>
+                        <button onClick={this.rightSlide}><img src={chevronLeft} alt="to-right" /></button>
                     </div>
                 )}
             </div>

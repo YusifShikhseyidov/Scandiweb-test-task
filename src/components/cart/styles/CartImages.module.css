@@ -33,3 +33,7 @@
     border: none;
     outline: none;
 }
+
+.buttons-container img{
+    z-index: 10;
+}

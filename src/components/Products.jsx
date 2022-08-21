@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from "react";
 import styles from "./styles/Products.module.css";
 import { sendToCart } from "./imports";
@@ -66,11 +67,6 @@ class Products extends Component {
     return realPrice;
   }
 
-  componentDidMount(){
-    console.log("products")
-    console.log(this.props)
-    console.log(this.state)
-  }
 
   setSelectedValue = (attribute, attribute_item) => {
     const items = JSON.parse(JSON.stringify(this.state.product))
@@ -149,7 +145,7 @@ class Products extends Component {
                 <div key={index}>
                   <p>{attribute.name}:</p>
                   <div className={styles.attributes}>
-                    {attribute.items?.map((item, i) => {
+                    {attribute.items.map((item, i) => {
                       if (attribute.type === "swatch"){
                         return (
                           <div key={i} className={styles["color-box"]}>
@@ -160,15 +156,15 @@ class Products extends Component {
                             ></button>
                           </div>
                         )} else{
-                            return (
-                              <div key={i} className={styles["size-box"]}>
-                                <button
-                                  className={ attribute.selected === item.value ? styles["selected-size"] : "" }
-                                  onClick={() => this.setSelectedValue(index, item) }
-                                > {item.value}
-                                </button>
-                              </div>
-                            )
+                          return (
+                            <div key={i} className={styles["size-box"]}>
+                              <button
+                                className={ attribute.selected === item.value ? styles["selected-size"] : "" }
+                                onClick={() => this.setSelectedValue(index, item) }
+                              > {item.value}
+                              </button>
+                            </div>
+                          )
                         }
                     })}
                   </div>
@@ -191,6 +187,8 @@ class Products extends Component {
             </AttributeSelector>
           )}
         </>
+
+        
         <Link to={"/product/" + this.props.product.id}>
           <ProductCard className={!this.props.product.inStock && styles.opacity}>
             
@@ -200,14 +198,30 @@ class Products extends Component {
             <div className={styles["image-box"]}>
               <img src={this.props.product.gallery[0]} alt="/" />
             </div>
-            <p className={styles["product-name"]}>
-              {" "}
-              {this.props.product.brand} {this.props.product.name}
-            </p>
-            <span className={styles.price}>
-              {this.props.currency.symbol}
-              {this.getPriceLabel(this.props.product.prices)}
-            </span>
+
+            {!this.props.product.inStock ? (
+              <p className={styles["product-name__out-of-stock"]}>
+                {" "}
+                {this.props.product.brand} {this.props.product.name}
+              </p>
+            ) : (
+              <p className={styles["product-name"]}>
+                {" "}
+                {this.props.product.brand} {this.props.product.name}
+              </p>
+            )}
+
+              {!this.props.product.inStock ? (
+                <span className={styles["price__out-of-stock"]}>
+                  {this.props.currency.symbol}
+                  {this.getPriceLabel(this.props.product.prices).toFixed(2)}
+                </span>
+              ) : (
+                <span className={styles.price}>
+                  {this.props.currency.symbol}
+                  {this.getPriceLabel(this.props.product.prices).toFixed(2)}
+                </span>
+              )}
 
           </ProductCard>
         </Link>

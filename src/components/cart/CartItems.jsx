@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from "react";
 import { setTotalAmountt, addToCart, removeCartItem } from "../../store/actions";
 import { connect } from "react-redux";

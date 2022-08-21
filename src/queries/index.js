@@ -1,37 +1,5 @@
 import { gql } from "graphql-request";
 
-export const query = gql`
-    {
-        category{
-            name
-            products{
-                category
-                id
-                name
-                brand
-                inStock
-                gallery
-                attributes{
-                    id
-                    name
-                    type
-                    items{
-                        displayValue
-                        value
-                        id
-                    }
-                }
-                prices{
-                    currency{
-                        label
-                        symbol
-                    }
-                    amount
-                }
-            }
-        }
-    }
-`
 
 export const productDetailsQuery = (productId) => gql`
     {
@@ -64,6 +32,40 @@ export const productDetailsQuery = (productId) => gql`
     }
 `
 
+export const perCategoryQuery = (category) => gql`
+    {
+        category(input: { title: "${category}" }){
+            name
+            products{
+                id
+                name
+                inStock
+                gallery
+                description
+                category
+                attributes{
+                    id
+                    name
+                    type
+                    items{
+                        id
+                        value
+                        displayValue
+                    }
+                }
+                prices{
+                    currency{
+                        label
+                        symbol
+                    }
+                    amount
+                }
+                brand
+            }
+        }
+    }
+`
+
 export const categoriesQuery = gql`
     {
         categories{
@@ -77,74 +79,6 @@ export const currencyQuery = gql`
         currencies{
             label
             symbol
-        }
-    }
-`
-
-export const clothesQuery = gql`
-    {
-        category(input: { title: "clothes" }){
-            name
-            products{
-                id
-                name
-                inStock
-                gallery
-                description
-                category
-                attributes{
-                    id
-                    name
-                    type
-                    items{
-                        displayValue,
-                        value,
-                        id
-                    }
-                }
-                prices{
-                    currency{
-                        label
-                        symbol
-                    }
-                    amount
-                }
-                brand
-            }
-        }
-    }
-`
-
-export const techQuery = gql`
-    {
-        category(input: { title: "tech" }){
-            name
-            products{
-                id
-                name
-                inStock
-                gallery
-                description
-                category
-                attributes{
-                    id
-                    name
-                    type
-                    items{
-                        displayValue,
-                        value,
-                        id
-                    }
-                }
-                prices{
-                    currency{
-                        label
-                        symbol
-                    }
-                    amount
-                }
-                brand
-            }
         }
     }
 `

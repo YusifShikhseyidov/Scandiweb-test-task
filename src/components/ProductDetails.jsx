@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from "react"
 import styles from "./styles/ProductDetails.module.css"
 import { connect } from "react-redux"
@@ -65,6 +66,7 @@ class ProductDetails extends Component {
  
 
   render() {
+    
     return (
       <div className={styles.layout}>
 
@@ -86,7 +88,7 @@ class ProductDetails extends Component {
                       src={img}
                       alt="/"
                     />
-                </div>
+                  </div>
                 ) : (
                   <div key={key}>
                     <img

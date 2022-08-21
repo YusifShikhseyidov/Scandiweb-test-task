@@ -4,7 +4,7 @@
 .layout{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 32px;
+    margin: 24px 0;
     height: 100%;
 }
 
@@ -13,7 +13,7 @@
 .row-one{
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 20px;
 }
 
 .item-brand{
@@ -22,6 +22,7 @@
     font-weight: 600;
     line-height: 27px;
     color: #1d1f22;
+    margin-bottom: 16px;
 }
 
 .item-name{
@@ -46,12 +47,12 @@
     line-height: 18px;
     font-weight: 700;
     color: #1d1f22;
-    margin-top: 9px;
 }
 
 .attributes{
     display: flex;
     gap: 6px;
+    margin-top: 6px;
 }
 
 .size-box{
@@ -77,7 +78,6 @@
 .color-box{
     display: flex;
     align-items: center;
-    margin-top: 6px;
     gap: 6px;
 }
 .color-box p{
@@ -86,12 +86,13 @@
 .color-box span{
     width: 32px;
     height: 32px;
+    border: 0;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.08);
 }
 
 .row-two{
     display: flex;
-    gap: 12px;
+    gap: 24px;
 }
 
 .action-buttons{
@@ -111,7 +112,8 @@
 }
 
 .selected-color{
-    border: 2px solid #5ece7b;
+    outline: 1px solid #5ece7b;
+    outline-offset: 1px;
 }
 .selected-size{
     color: #fff;

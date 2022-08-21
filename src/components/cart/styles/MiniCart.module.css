@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Source+Sans+Pro:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;500&family=Source+Sans+Pro:wght@300&display=swap');
 
 
 .list{
@@ -12,13 +12,13 @@
     justify-content: space-between;
     align-items: flex-start;
     height: 100%;
-    margin-bottom: 25px;
+    margin-bottom: 32px;
 }
 
 .row-one{
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
 }
 
 .itemModel p{
@@ -35,7 +35,6 @@
     font-weight: 500;
     line-height: 160%;
     color: #1d1f22;
-    margin: 10px 0;
 }
 
 .attrName{
@@ -49,6 +48,24 @@
 .attributes{
     display: flex;
     gap: 6px;
+}
+
+.capacity-attribute-specific{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.capacity-attribute-specific span{
+    margin-top: 6px;
+    width: 40px;
+    height: 24px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 160%;
+    text-align: center;
+    border: 1px solid #1d1f22;
 }
 
 .size-box{
@@ -80,11 +97,13 @@
 .color-box span{
     width: 16px;
     height: 16px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border: 0;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.12);
 }
 
 .selected-color{
-    border: 2px solid #5ece7b;
+    outline: 1px solid #5ece7b;
+    outline-offset: 1px;
 }
 
 .selected-size{
@@ -94,7 +113,7 @@
 
 .row-two{
     display: flex;
-    gap: 12px;
+    gap: 8px;
 }
 
 .action-buttons{
@@ -112,6 +131,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.action-buttons span{
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 160%;
+    color: #1d1f22;
 }
 
 .product-image{

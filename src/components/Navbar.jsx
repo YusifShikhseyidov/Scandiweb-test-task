@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
@@ -43,11 +44,11 @@ const Overlay = styled.span`
     position: fixed;
     width: 100%;
     height: 100vh;
-    top: 9%;
+    top: 11.2%;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(57, 55, 72, 0.22);
     overflow: hidden;
     z-index: 2;
 `
@@ -77,7 +78,6 @@ class Navbar extends Component{
 
     componentDidMount(){
         this.getCurrencies();
-        console.log(this.props.categories)
     }
 
     componentDidUpdate(previousProps){
@@ -90,7 +90,6 @@ class Navbar extends Component{
         try{
             const response = await request("http://localhost:4000/", currencyQuery);
             const data = await response.currencies;
-            // console.log(data)
             this.setState({ ...this.state, currencies: data });
         }
         catch(error) {
@@ -120,8 +119,8 @@ class Navbar extends Component{
                     </ul>
                     
                     {/* Site logo */}
-                    <div>
-                        <img src={logo} style={{width: 35}} alt="logo" />
+                    <div className={styles.siteLogoContainer}>
+                        <img src={logo} alt="logo" />
                     </div>
 
                     {/* Currency menu part */}
@@ -130,7 +129,7 @@ class Navbar extends Component{
                             {!this.props.isOpen && (
                                 <div>
                                     <button onClick={ this.toggleCurrencyMenuHandler}>
-                                        <span className={styles.currencyy} >
+                                        <span className={styles.currencySign} >
                                             { this.props.currency.symbol }
                                         </span>
 
@@ -141,7 +140,7 @@ class Navbar extends Component{
                             {this.props.isOpen && (
                                 <>
                                     <button onClick={ this.toggleCurrencyMenuHandler}>
-                                        <span className={styles.currencyy} >
+                                        <span className={styles.currencySign} >
                                             { this.props.currency.symbol }
                                         </span>
                                         
@@ -167,12 +166,13 @@ class Navbar extends Component{
                         <div className={styles.cart} >
                             <button onClick={() => this.props.toggleCartHandler()}>
                                 <img src={cart} alt="cart" />
+                                {this.props.cartItems.length > 0 && (
+                                    <span className={styles.cartItemsNumber}>
+                                        {this.props.totalCartItems}
+                                    </span>
+                                )}
                             </button>
-                            {this.props.cartItems.length > 0 && (
-                                <span className={styles.cartItemsNumber}>
-                                    {this.props.totalCartItems}
-                                </span>
-                            )}
+                            
 
                             {this.props.openCart && (
                                 <div className={styles.miniCart}>

@@ -1,9 +1,12 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from "react";
 import Products from "../components/Products";
 import { closeCart, getProducts, setError } from "../store/actions";
 import { request } from "graphql-request";
-import { query } from "../queries";
+import { perCategoryQuery } from "../queries";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { compose } from "redux";
 import styled from "styled-components";
 
 const Row=styled.div.attrs({
@@ -24,55 +27,60 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) =>({
-    getProducts: (product) => dispatch(getProducts(product)),
+    getAllProducts: (product) => dispatch(getProducts(product)),
     closeCart: () => dispatch(closeCart()),
     setErrorMessage: (message) => dispatch(setError(message))
 })
 
 class ProductListingPage extends Component {
-    state={
-        isLoading: false
-    }
-
+  
+    state = {
+        isLoading: false,
+      }
+    
     componentDidMount() {
         const getProducts = async () => {
-            this.setState({isLoading: true})
-            try{
-                await request("http://localhost:4000/", query).then( data => this.props.getProducts(data.category))
-                this.setState({isLoading: false})
-            } catch(error) {
-                this.props.setErrorMessage(error.message)
+            this.setState({isLoading: true});
+            try {
+              await request( "http://localhost:4000/", perCategoryQuery(this.props.match.path.slice(1))).then( data => this.props.getAllProducts(data.category))
+        
+              
+              
+        
+              this.setState({isLoading: false});
+            } catch (error) {
+              this.props.setErrorMessage(error.message)
             }
-        }
-
-        getProducts()
-        this.props.closeCart()
-        console.log(this.props)
-        console.log(this.state)
+    
+        };
+        
+        getProducts();
+        this.props.closeCart();
     }
-
+    
+    
+    
     render() {
         return (
             <>
-                {!this.state.isLoading && (
-                    <div>
-                        <h1 className="category"> {this.props.category} </h1>
+                <div>
+                    <h1 className="category"> {this.props.category}</h1>
+                    {this.state.isLoading ? (
+                        <div>A Second Please...</div>
+                    ) : (
                         <Row>
-                            {this.props.allProducts.map(product => (
-                                <div key={product.id} className="plpProductsRow-div-content">
+                            {this.props.allProducts.map((product) => (
+                                <div key={product.id} className="plpProductsRow-div-content" >
                                     <Products product={product} id={product.id} />
                                 </div>
                             ))}
                         </Row>
-                    </div>
-                )}
-
-                {this.state.isLoading && (<div>Loading....</div>)}
-
+                    )}
+                </div>
                 {!this.state.isLoading && this.props.isError && (<div>{this.props.errorMessage}</div>)}
             </>
         )
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductListingPage);
+export default compose( withRouter, connect(mapStateToProps, mapDispatchToProps))(ProductListingPage);

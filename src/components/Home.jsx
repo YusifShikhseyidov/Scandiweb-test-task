@@ -1,11 +1,10 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import Navbar from "./Navbar";
-import TechPage from "../pages/TechPage";
-import ClothesPage from "../pages/ClothesPage";
 import ProductDescriptionPage from "../pages/ProductDescriptionPage";
-import CartPage from "../pages/CartPage";
+import Cart from "./cart/Cart";
 import ProductListingPage from "../pages/ProductListingPage";
 import CategoriesPage from "../pages/CategoriesPage";
 import "./styles/Home.css";
@@ -49,17 +48,13 @@ class Home extends Component {
                     <Route exact path="/">
                         <CategoriesPage />
                     </Route>
-                    <Route exact path="/all">
-                        <ProductListingPage />
-                    </Route>
-                    <Route exact path="/tech">
-                        <TechPage />
-                    </Route>
-                    <Route exact path="/clothes">
-                        <ClothesPage />
-                    </Route>
+                    {this.state.categories.map((category) => (
+                        <Route exact key={category.name} path={`/${category.name}`}>
+                            <ProductListingPage />
+                        </Route>
+                    ))}
                     <Route exact path="/cart">
-                        <CartPage />
+                        <Cart />
                     </Route>
                     <Route exact path="/product/:productId">
                         <ProductDescriptionPage />

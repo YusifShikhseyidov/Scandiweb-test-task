@@ -5,7 +5,7 @@
     position: sticky;
     top: 0;
     max-width: 1440px;
-    height: 55px;
+    height: 80px;
     z-index: 1000;
     background-color: #fff;
 }
@@ -16,18 +16,18 @@
     align-items: center;
     margin: 0 auto;
     max-width: 1330px;
-    height: 55px;
+    height: 75px;
 }
 
 .navlinks{
     display: flex;
-    margin: 0 0 0 ;
+    margin: 0;
     padding: 0;
     list-style: none;
 }
 
 .navlinks li a{
-    padding: 0 13px 15px;
+    padding: 0 13px 30px;
     text-decoration: none;
     text-transform: uppercase;
     color: #1d1f22;
@@ -39,6 +39,10 @@
 .activeLink{
     border-bottom: 2px solid #5ece7b;
     color: #5ece7b !important;
+}
+
+.navbar .siteLogoContainer img{
+    width: 35px;
 }
 
 
@@ -55,24 +59,28 @@ button{
     border: none;
 }
 
-.currencyy{
-    font-size: 20px;
-}
-
 .currencyMenu{
     display: flex;
     align-items: flex-end;
     position: relative;
-    margin-right: 18px;
+    margin-right: 20px;
 }
 .currencyMenu button{
     padding: 4px 16px;
 }
 
+.currencyMenu button .currencySign{
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    line-height: 160%;
+    font-weight: 500;
+    color: #1d1f22;
+}
+
 .currencyMenu img{
     position: absolute;
-    top: 40%;
-    margin-left: 2px;
+    top: 53.75%;
+    left: 76.47%;
 }
 
 p{
@@ -104,7 +112,7 @@ p{
 
 .miniCart{
     position: fixed;
-    top: 8%;
+    top: 11.2%;
     right: 5%;
     background-color: #fff;
     min-width: 340px;
